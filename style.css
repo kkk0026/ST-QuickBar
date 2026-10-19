@@ -1577,6 +1577,7 @@ textarea.ih-replace-input::-webkit-scrollbar {
 .ih-two-row {
   display: flex;
   flex-direction: row;
+  justify-content: var(--ih-toolbar-align, center);
   align-items: center;
   overflow-x: auto;
   overflow-y: hidden;
