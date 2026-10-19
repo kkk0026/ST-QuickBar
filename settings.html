@@ -1,0 +1,422 @@
+<style>
+  @keyframes ih-new-blink {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.4;
+    }
+  }
+</style>
+<div class="input-helper-settings">
+  <div class="inline-drawer">
+    <div class="inline-drawer-toggle inline-drawer-header">
+      <span style="display: inline-flex; align-items: center">
+        <b>快捷工具栏</b>
+        <span
+          id="ih_new_badge"
+          style="
+            display: none;
+            color: #dc5a4c;
+            font-size: 14px;
+            font-weight: bold;
+            margin-left: 8px;
+            letter-spacing: 1px;
+            animation: ih-new-blink 1.2s ease-in-out infinite;
+          "
+          >new!</span
+        >
+      </span>
+      <div
+        class="inline-drawer-icon fa-solid fa-circle-chevron-down down"
+      ></div>
+    </div>
+    <div class="inline-drawer-content">
+      <div class="ih-update-bar" id="ih_update_bar">
+        <span class="ih-update-ver" id="ih_version_label"></span>
+        <span
+          class="ih-update-state"
+          id="ih_update_pill"
+          data-tone="idle"
+          title="点击查看更新详情"
+        >
+          <span class="ih-update-dot"></span>
+          <span class="ih-update-state-text">点击检查更新</span>
+        </span>
+        <button
+          type="button"
+          id="ih_update_action"
+          class="ih-update-action menu_button menu_button_icon"
+          style="padding: 3px 10px; font-size: 11px"
+        >
+          <i class="fa-solid fa-rotate"></i> 检查更新
+        </button>
+      </div>
+      <div
+        style="
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 6px;
+        "
+      >
+        <div
+          id="ih_settings_top_left"
+          style="display: flex; gap: 6px; align-items: center"
+        ></div>
+        <div
+          id="ih_settings_top_right"
+          style="display: flex; gap: 6px; align-items: center"
+        >
+          <button
+            id="ih_open_changelog_btn"
+            class="ih-hm-btn"
+            style="padding: 3px 10px; font-size: 11px"
+            title="更新日志"
+          >
+            <i class="fa-solid fa-clipboard-list"></i> 日志
+          </button>
+          <button
+            id="ih_open_help_btn"
+            class="ih-hm-btn"
+            style="padding: 3px 10px; font-size: 11px"
+            title="使用说明"
+          >
+            <i class="fa-solid fa-circle-question"></i> 帮助
+          </button>
+        </div>
+      </div>
+
+      <div class="ih-section ih-section-main">
+        <div class="ih-switch-row">
+          <label class="ih-switch-label" for="enable_input_helper">
+            <i class="fa-solid fa-keyboard"></i>
+            启用快捷工具栏
+          </label>
+          <label class="ih-toggle">
+            <input id="enable_input_helper" type="checkbox" />
+            <span class="ih-toggle-slider"></span>
+          </label>
+        </div>
+        <div class="ih-switch-row">
+          <label class="ih-switch-label" for="enable_toolbar_pinned">
+            <i class="fa-solid fa-thumbtack"></i>
+            工具栏固定展开
+          </label>
+          <label class="ih-toggle">
+            <input id="enable_toolbar_pinned" type="checkbox" />
+            <span class="ih-toggle-slider"></span>
+          </label>
+        </div>
+        <div class="ih-switch-row">
+          <label
+            class="ih-switch-label"
+            for="toolbar_align"
+            title="设置按钮行在输入框上的位置（靠右 / 居中 / 靠左）"
+          >
+            <i class="fa-solid fa-align-center"></i>
+            按钮行对齐
+          </label>
+          <select
+            id="toolbar_align"
+            class="ih-toolbar-align-select"
+            title="按钮行对齐：靠右（默认）/ 居中 / 靠左"
+          >
+            <option value="right">靠右（默认）</option>
+            <option value="center">居中</option>
+            <option value="left">靠左</option>
+          </select>
+        </div>
+        <div class="ih-switch-row">
+          <label class="ih-switch-label" for="enable_two_row_mode">
+            <i class="fa-solid fa-table-columns"></i>
+            双栏模式
+          </label>
+          <label class="ih-toggle">
+            <input id="enable_two_row_mode" type="checkbox" />
+            <span class="ih-toggle-slider"></span>
+          </label>
+        </div>
+        <div
+          class="ih-section-header ih-collapsible"
+          data-target="ih_more_settings_body"
+          style="margin-top: 6px;"
+        >
+          <i class="fa-solid fa-gear"></i>
+          更多设置
+          <i class="fa-solid fa-chevron-down ih-collapse-icon"></i>
+        </div>
+        <div class="ih-section-desc">
+          悬浮编辑、删除确认、解锁备选、滚动行为、模型显示等进阶选项
+        </div>
+        <div id="ih_more_settings_body" class="ih-collapsible-body">
+          <div class="ih-switch-row">
+            <label class="ih-switch-label" for="enable_floating_editor" title="在编辑框放大按钮前显示悬浮编辑入口；角色字段自动保存，预设草稿关闭时自动保存，其他字段实时同步。">
+              <i class="fa-solid fa-up-right-from-square"></i>
+              悬浮编辑窗
+            </label>
+            <label class="ih-toggle">
+              <input id="enable_floating_editor" type="checkbox" />
+              <span class="ih-toggle-slider"></span>
+            </label>
+          </div>
+          <div class="ih-switch-row">
+            <label class="ih-switch-label" for="enable_confirm_dangerous">
+              <i class="fa-solid fa-triangle-exclamation"></i>
+              删除操作前弹窗确认
+            </label>
+            <label class="ih-toggle">
+              <input id="enable_confirm_dangerous" type="checkbox" />
+              <span class="ih-toggle-slider"></span>
+            </label>
+          </div>
+          <div class="ih-switch-row">
+            <label class="ih-switch-label" for="enable_auto_scroll_ai_stream">
+              <i class="fa-solid fa-bolt"></i>
+              非流自动跳转至AI消息顶部
+            </label>
+            <label class="ih-toggle">
+              <input id="enable_auto_scroll_ai_stream" type="checkbox" />
+              <span class="ih-toggle-slider"></span>
+            </label>
+          </div>
+          <div class="ih-switch-row">
+            <label class="ih-switch-label" for="enable_show_model_in_chat">
+              <i class="fa-solid fa-microchip"></i>
+              聊天界面显示模型名
+            </label>
+            <label class="ih-toggle">
+              <input id="enable_show_model_in_chat" type="checkbox" />
+              <span class="ih-toggle-slider"></span>
+            </label>
+          </div>
+          <div class="ih-switch-row">
+            <label class="ih-switch-label" for="enable_disable_smooth_scroll">
+              <i class="fa-solid fa-forward-fast"></i>
+              禁用所有动效（墨水屏/低刷新率设备）
+            </label>
+            <label class="ih-toggle">
+              <input id="enable_disable_smooth_scroll" type="checkbox" />
+              <span class="ih-toggle-slider"></span>
+            </label>
+          </div>
+          <div class="ih-switch-row ih-speed-row">
+            <label class="ih-switch-label">
+              <i class="fa-solid fa-book-open"></i>
+              翻页滚动高度
+            </label>
+            <div class="ih-speed-control">
+              <input
+                id="paging_scroll_ratio"
+                type="range"
+                min="30"
+                max="120"
+                step="5"
+                value="93"
+              />
+              <input
+                type="number"
+                id="paging_scroll_ratio_input"
+                min="10"
+                max="200"
+                value="93"
+                style="
+                  width: 54px;
+                  padding: 3px 4px;
+                  border: 1px solid var(--SmartThemeBorderColor);
+                  border-radius: 4px;
+                  background: var(--SmartThemeBlurTintColor);
+                  color: var(--SmartThemeBodyColor);
+                  font-size: 11px;
+                  text-align: center;
+                  margin-left: 4px;
+                "
+              /><span class="ih-speed-unit">%</span>
+            </div>
+          </div>
+          <div class="ih-switch-row ih-speed-row">
+            <label class="ih-switch-label">
+              <i class="fa-solid fa-text-height"></i>
+              按钮大小
+            </label>
+            <div class="ih-speed-control">
+              <input
+                id="toolbar_btn_size"
+                type="range"
+                min="10"
+                max="20"
+                step="1"
+                value="12"
+              />
+              <input
+                type="number"
+                id="toolbar_btn_size_input"
+                min="8"
+                max="24"
+                value="12"
+                style="
+                  width: 54px;
+                  padding: 3px 4px;
+                  border: 1px solid var(--SmartThemeBorderColor);
+                  border-radius: 4px;
+                  background: var(--SmartThemeBlurTintColor);
+                  color: var(--SmartThemeBodyColor);
+                  font-size: 11px;
+                  text-align: center;
+                  margin-left: 4px;
+                "
+              /><span class="ih-speed-unit">px</span>
+            </div>
+          </div>
+          <div class="ih-switch-row ih-speed-row">
+            <label class="ih-switch-label">
+              <i class="fa-solid fa-gauge-high"></i>
+              自动滚动速度
+            </label>
+            <div class="ih-speed-control">
+              <input
+                id="auto_scroll_speed"
+                type="range"
+                min="10"
+                max="300"
+                step="10"
+                value="50"
+              />
+              <input
+                type="number"
+                id="auto_scroll_speed_input"
+                min="1"
+                max="1000"
+                value="50"
+                style="
+                  width: 54px;
+                  padding: 3px 4px;
+                  border: 1px solid var(--SmartThemeBorderColor);
+                  border-radius: 4px;
+                  background: var(--SmartThemeBlurTintColor);
+                  color: var(--SmartThemeBodyColor);
+                  font-size: 11px;
+                  text-align: center;
+                  margin-left: 4px;
+                "
+              /><span class="ih-speed-unit">px/s</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ih-section">
+        <div
+          class="ih-section-header ih-collapsible"
+          data-target="button_management_body"
+        >
+          <i class="fa-solid fa-sliders"></i>
+          按钮管理
+          <i class="fa-solid fa-chevron-down ih-collapse-icon"></i>
+        </div>
+        <div class="ih-section-desc">
+          拖动 调整顺序 · 勾选控制显示 · 点击快捷键输入框设置热键
+        </div>
+        <div id="button_management_body" class="ih-collapsible-body">
+          <div id="integrated_button_settings"></div>
+        </div>
+      </div>
+
+      <div class="ih-section">
+        <div class="ih-section-header">
+          <i class="fa-solid fa-ghost"></i>
+          消息管理
+          <div
+            id="open_hide_manager_btn"
+            class="menu_button menu_button_icon"
+            style="margin-left: auto; cursor: pointer"
+            title="打开消息管理"
+          >
+            <i class="fa-solid fa-ghost"></i>
+            <span>打开</span>
+          </div>
+        </div>
+        <div class="ih-section-desc">
+          统一管理消息的隐藏、删除和移动，支持单条/范围/勾选多种操作方式
+        </div>
+      </div>
+
+      <div class="ih-section">
+        <div class="ih-section-header">
+          <i class="fa-solid fa-puzzle-piece"></i>
+          自定义内容
+          <div
+            id="add_custom_symbol_btn"
+            class="menu_button menu_button_icon"
+            style="margin-left: auto; cursor: pointer"
+            title="添加自定义内容"
+          >
+            <i class="fa-solid fa-plus"></i>
+            <span>添加</span>
+          </div>
+        </div>
+        <div class="ih-section-desc">
+          添加自己需要的符号按钮，支持自定义插入内容、显示文字和 FA 图标
+        </div>
+      </div>
+
+      <div class="ih-section">
+        <div
+          class="ih-section-header ih-collapsible"
+          data-target="folder_settings_body"
+        >
+          <i class="fa-solid fa-folder"></i>
+          按钮分组
+          <i class="fa-solid fa-chevron-down ih-collapse-icon"></i>
+        </div>
+        <div class="ih-section-desc">
+          将按钮收纳到文件夹中，工具栏只显示一个折叠按钮，点击展开
+        </div>
+        <div id="folder_settings_body" class="ih-collapsible-body">
+          <div id="folder_settings_list"></div>
+          <div
+            id="add_folder_btn"
+            class="menu_button menu_button_icon"
+            style="cursor: pointer; width: 100%; margin-top: 6px"
+          >
+            <i class="fa-solid fa-folder-plus"></i>
+            <span>新建文件夹</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="ih-section">
+        <div
+          class="ih-section-header ih-collapsible"
+          data-target="ih_floating_panel_body"
+        >
+          <i class="fa-solid fa-circle-dot"></i>
+          悬浮面板
+          <div
+            id="ih_fp_reset_pos_header"
+            class="menu_button menu_button_icon ih-header-toggle"
+            style="margin-left: auto; cursor: pointer"
+            title="重置悬浮球/面板位置"
+          >
+            <i class="fa-solid fa-arrows-to-dot"></i>
+          </div>
+          <label class="ih-toggle ih-header-toggle" style="margin-left: 6px">
+            <input id="enable_floating_panel" type="checkbox" />
+            <span class="ih-toggle-slider"></span>
+          </label>
+          <i
+            class="fa-solid fa-chevron-down ih-collapse-icon"
+            style="margin-left: 8px"
+          ></i>
+        </div>
+        <div class="ih-section-desc">
+          启用悬浮球/面板，放置常用的导航和功能按钮。面板中的按钮不会在主工具栏重复显示。支持自定义悬浮球样式（GIF等）。
+        </div>
+        <div id="ih_floating_panel_body" class="ih-collapsible-body">
+          <div id="ih_floating_panel_settings"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
