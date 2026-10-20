@@ -2,6 +2,8 @@
 
 _一个功能丰富的 SillyTavern 输入辅助插件，提供快捷输入、导航跳转、消息管理、工具栏定制等实用功能。_
 
+> 本改版基于 [Sanjs333/ST-QuickBar](https://github.com/Sanjs333/ST-QuickBar) 二次修改，原始项目为 [Mooooooon/st-input-helper](https://github.com/Mooooooon/st-input-helper)。
+
 ## 功能一览
 
 ### 文本编辑
