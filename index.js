@@ -25986,6 +25986,12 @@ function setupToolbarSwipeCollapse() {
         tracking = false;
         return;
       }
+      // 仅当手势起点位于输入区（发送框或悬浮编辑窗）内时才追踪，
+      // 避免在聊天正文等其他区域下滑误触发键盘/工具栏收起。
+      if (!$t.closest("#send_form, .ih-floating-editor-window").length) {
+        tracking = false;
+        return;
+      }
       startY = e.touches[0].clientY;
       startX = e.touches[0].clientX;
       tracking = true;
