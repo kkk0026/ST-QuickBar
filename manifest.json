@@ -6,7 +6,7 @@
   "js": "index.js",
   "css": "style.css",
   "author": "ssssan_",
-  "version": "3.3.4",
-  "auto_update": true,
-  "homePage": "https://github.com/Sanjs333/ST-QuickBar"
+  "version": "3.3.5",
+  "auto_update": false,
+  "homePage": "https://github.com/kkk0026/ST-QuickBar"
 }
